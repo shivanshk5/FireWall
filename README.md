@@ -1,0 +1,22 @@
+# FireWall
+# Illumio Coding Challenge
+
+## Approaches and Potential Improvements
+
+### Approaches
+For runtime and space complexity, n represents the number of rules
+1. My first approach was the naive solution. I created a list of all the rules and for each package, I went through all the rules and checked if that package is valid or not. In the worst case, this is O(n) space complexity for storing all the rules and O(n) time complexity for going through all the rules. After I passed the test cases, I tried to create a better solution with Approach 2. 
+2. My second approach was to create a dictionary or a hashmap that splits the rules based on direction and protocol since there are only two options for each. Also, I created a set for each of the 4 options to prevent duplicate rules taking up more space. Ideally, I wanted to create hashkeys so I could make the rules be spread out more evenly, which I discussed in potential improvements. The worst case runtime is still O(n) and the space complexity is still O(n).
+### Potential Improvements
+1. A design improvement would allow this script to be run directly from the terminal with the 4 inputs for each rule and get whether the rule is valid or not. I could use the sys arg Python library.
+2. I was out of time but I could have tried to create more hash keys for the port and the ip address. I could have split the ports and ip addresses into different equally spaced ranges so the rules would be spread more evenly across the keys in the dictionary, which would reduce the runtime. However, if all the rules fit in the same category, the worst case runtime would still be O(n) but is unlikely in the real world example.
+3. Also, since the spec expects a quick runtime, I could have created a hash table with each rule and all the ranges of the ports and the ranges of the ip addresses. This would make the constructor or the construction of the hashmap very slow as it would take the constructor O(n * p * i) where n is number of rules and p is range of port and i is the range of ip address. However, once this is created, it would only take O(1) time to check whether the rule is valid. This method could be useful dependent on whether the speed of checking the validity of a rule is significantly more important than the speed of constructing the data structure of rules.
+4. A balance between improvement 2 and 3 could be to create a Trie for each key that can represent a value of direction and protocol. This would make the time complexity O(log n) for each direction and protocol and would make the constructor faste. 
+5. Another potential improvement for runtime is to use caching and store valid packages into a list. If there are not that many packages, we can simply look in this list and if another package is the same, we can simply return True or not if it is in the list. The runtime will be dependent on the number of packages. Assuming there are a lot of packages, this might not be a great solution.
+## Testing
+1. I tested my code first through checking whether the rules were coming in properly for the csv file. I used pdb and went through the terminal to check if the correct rules were coming. I created different functions for unit testing so it becomes easier to find where the problem occurs.
+2. Then, I used the sample test cases from the spec and tested different edge cases and the basic unit tests for the different rules and packages.
+3. An improvement for unit testing can be to use mock so I do not have to create a new csv file each time for creating new rules. Once checked that the rules are properly getting read from the csv file, I can simply use mock to test different edge cases for the rules.
+## Preference of Teams
+1. Data Team. As a double major in computer science and data science, I would love the opportunity to combine both these passions into a working project that can be incorporated into products like Illumination. I also am taking a machine learning (CS 189) and database (CS 186) course next semester and have taken the majority of upper division data science and computer science classes that can be very beneficial for potential work for this team.
+2. Platform Team. During my previous internships, I have had a lot of experience automating and adding features to different platforms for scalability and more efficiency. I would also love to apply these skills to Illumio platforms and learn more about how I can use my knowledge, specifically from a monitoring perspective.
